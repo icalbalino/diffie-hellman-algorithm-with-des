@@ -27,7 +27,7 @@ function pilihdha(_ygDipilih) {
     }
 }
 // masukan algoritma, algoritma1 atau algoritma2
-const kunciK = pilihdha(algoritma2)
+const kunciK = pilihdha(algoritma1)
 
 
 // Kriptografi Simetri DES

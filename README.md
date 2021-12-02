@@ -2,14 +2,6 @@
 
 author **_Ical Balino_**
 
-```
-
-    npm install
-
-    node app.js
-
-```
-
 ## Protokol Pertukaran Kunci Diffie-Hellman
 1. **Protokol 11**
     - Alice memilih bilangan bulat acak yang besar `x` dan mengirim hasil perhitungan berikut kepada Bob: `X = g^x mod n`
@@ -41,6 +33,42 @@ author **_Ical Balino_**
 
 Jika Alice dan Bob sudah mempunyai kunci sesi yang sama, yaitu `K = k`. Kunci ini siap digunakan untuk melakukan komunikasi dengan **Kriptografi Simetri**.
 
-## Workflow Algoritma 
+## Setup
+```
 
-## DES
+    // kode program menggunakan nodeJS (v14.15.3)
+
+    npm install
+
+    node app.js
+
+```
+
+## Workflow utilitas Algoritma
+### Program algoritma Diffie-Hellman
+`dhAlgorithm.js` merupakan module program untuk Diffie-Hellman Algorithm.
+
+```
+
+    exports.dhaPertama = () => {...}
+    exports.dhaKedua = () => {...}
+
+```
+
+Terdapat dua algoritma Diffie-Hellman yang mempunyai hasil keluaran yang berbeda, algoritma `dhaPertama` mengembalikan `Number` dan algoritma `dhaKedua` mengembalikan `String`. Silahkan gunakan salah satu algoritma sesuai kebutuhan. Algoritma `dhaKedua` menggunakan library/package `crypto` dari `javaScript` untuk destructure `createDiffieHellman` method dan generate keys secara otomatis.
+
+### Main program
+`app.js` merupakan main program untuk view `dhAlgorithm.js` dan `des.js`
+
+### DES
+`des.js` merupakan module untuk kriptografi simetri **DES (Data Encription Standard)**. Kode program digunakan untuk implementasi kunci sesi rahasia yang telah dibangkitkan dari algoritma pertukaran kunci Diffie-Hellman dan siap digunakan untuk melakukan komunikasi (encryption and decryption) perpesanan.
+
+Menggunakan library/package `crypto` dari `javaScript` yang merupakan standard kriptografi untuk `modules crypto javaScript`.
+
+```
+    const crypto = require('crypto');
+
+    exports.encryptDes = function(enData,KEY,IV){...}
+    exports.decryptDes = function(deData,KEY,IV){...}
+
+```
