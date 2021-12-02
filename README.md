@@ -1,9 +1,9 @@
 # diffie-hellman-algorithm-with-des
 
-**author _Ical Balino_**
+author **_Ical Balino_**
 
 ## Protokol Pertukaran Kunci Diffie-Hellman
-- **Protokol 11**
+1. **Protokol 11**
     1. Alice memilih bilangan bulat acak yang besar `x` dan mengirim hasil perhitungan berikut kepada Bob: `X = g^x mod n`
     2. Bob memilih bilangan bulat acak yang besar `y` dan mengirim hasil perhitungan berikut kepada Alice: `Y = g^y mod n`
     3. Alice menghitung ` K = Y^x mod n `
@@ -11,7 +11,7 @@
 
 **OR**
 
-- **Protokol 12**
+2. **Protokol 12**
     1. Alice memilih bilangan bulat acak yang besar `x` dan menghitung: ` K = g^x mod n `
     2. Bob memilih bilangan bulat acak yang besar `y` dan mengirim hasil perhitungan berikut kepada Alice: `Y = g^y mod n`
     3. Alice mengirim hasil perhitungan berikut kepada Bob: ` X = Y^x mod n `
