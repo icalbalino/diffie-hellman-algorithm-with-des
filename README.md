@@ -2,6 +2,14 @@
 
 author **_Ical Balino_**
 
+```
+
+    npm install
+
+    node app.js
+
+```
+
 ## Protokol Pertukaran Kunci Diffie-Hellman
 1. **Protokol 11**
     - Alice memilih bilangan bulat acak yang besar `x` dan mengirim hasil perhitungan berikut kepada Bob: `X = g^x mod n`
