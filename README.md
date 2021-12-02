@@ -45,7 +45,7 @@ Jika Alice dan Bob sudah mempunyai kunci sesi yang sama, yaitu `K = k`. Kunci in
 ```
 
 ## Workflow utilitas Algoritma
-### Program algoritma Diffie-Hellman
+### 1. Program algoritma Diffie-Hellman
 `dhAlgorithm.js` merupakan module program untuk Diffie-Hellman Algorithm.
 
 ```
@@ -57,10 +57,10 @@ Jika Alice dan Bob sudah mempunyai kunci sesi yang sama, yaitu `K = k`. Kunci in
 
 Terdapat dua algoritma Diffie-Hellman yang mempunyai hasil keluaran yang berbeda, algoritma `dhaPertama` mengembalikan `Number` dan algoritma `dhaKedua` mengembalikan `String`. Silahkan gunakan salah satu algoritma sesuai kebutuhan. Algoritma `dhaKedua` menggunakan library/package `crypto` dari `javaScript` untuk destructure `createDiffieHellman` method dan generate keys secara otomatis.
 
-### Main program
+### 2. Main program
 `app.js` merupakan main program untuk view `dhAlgorithm.js` dan `des.js`
 
-### DES
+### 3. DES
 `des.js` merupakan module untuk kriptografi simetri **DES (Data Encription Standard)**. Kode program digunakan untuk implementasi kunci sesi rahasia yang telah dibangkitkan dari algoritma pertukaran kunci Diffie-Hellman dan siap digunakan untuk melakukan komunikasi (encryption and decryption) perpesanan.
 
 Menggunakan library/package `crypto` dari `javaScript` yang merupakan standard kriptografi untuk `modules crypto javaScript`.
