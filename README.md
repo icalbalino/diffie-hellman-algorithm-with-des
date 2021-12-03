@@ -1,6 +1,8 @@
 # diffie-hellman-algorithm-with-des
 
+
 author **_Ical Balino_**
+
 
 ## Protokol Pertukaran Kunci Diffie-Hellman
 1. **Protokol 11**
@@ -16,6 +18,7 @@ author **_Ical Balino_**
     - Bob memilih bilangan bulat acak yang besar `y` dan mengirim hasil perhitungan berikut kepada Alice: `Y = g^y mod n`
     - Alice mengirim hasil perhitungan berikut kepada Bob: `X = Y^x mod n`
     - Bob menghitung `z = y^-1` (balikan `y` dalam modulus `n`), `K' = X^z mod n`
+
 
 ## Inisialisasi
 --> Bilangan Prima `n = 23` <br>
@@ -33,6 +36,7 @@ author **_Ical Balino_**
 
 Jika Alice dan Bob sudah mempunyai kunci sesi yang sama, yaitu `K = k`. Kunci ini siap digunakan untuk melakukan komunikasi dengan **Kriptografi Simetri**.
 
+
 ## Setup
 ```
 
@@ -43,6 +47,7 @@ Jika Alice dan Bob sudah mempunyai kunci sesi yang sama, yaitu `K = k`. Kunci in
     node app.js
 
 ```
+
 
 ## Workflow utilitas Algoritma
 ### 1. Program algoritma Diffie-Hellman
@@ -55,15 +60,27 @@ Jika Alice dan Bob sudah mempunyai kunci sesi yang sama, yaitu `K = k`. Kunci in
 
 ```
 
-Terdapat dua algoritma Diffie-Hellman yang mempunyai hasil keluaran yang berbeda, algoritma `dhaPertama` mengembalikan `Number` dan algoritma `dhaKedua` mengembalikan `String`. Silahkan gunakan salah satu algoritma sesuai kebutuhan. Algoritma `dhaKedua` menggunakan library/package `crypto` dari `javaScript` untuk destructure `createDiffieHellman` method dan generate keys secara otomatis.
+```
+
+    const { createDiffieHellman } = require('crypto');
+    const alice = createDiffieHellman(23);
+
+```
+
+- Terdapat dua algoritma Diffie-Hellman yang mempunyai hasil keluaran yang berbeda, algoritma `dhaPertama` mengembalikan `Number` dan algoritma `dhaKedua` mengembalikan `String`. Silahkan gunakan salah satu algoritma sesuai kebutuhan.
+- Algoritma `dhaKedua` menggunakan library/package `crypto` dari `javaScript` `Node.js Crypto Module` untuk destructure `createDiffieHellman` method dan generate keys secara otomatis.
+- **Node.js crypto.createDiffieHellman(primeLength, generator) Method** [disini](https://www.geeksforgeeks.org/node-js-crypto-creatediffiehellmanprimelength-generator-method/)
+- **Node.js crypto.createDiffieHellman(prime, primeEncoding, generator, generatorEncoding) Method** [disini](https://www.geeksforgeeks.org/node-js-crypto-creatediffiehellmanprime-primeencoding-generator-generatorencoding-method/)
+
 
 ### 2. Main program
 `app.js` merupakan main program untuk view `dhAlgorithm.js` dan `des.js`
 
+
 ### 3. DES
 `des.js` merupakan module untuk kriptografi simetri **DES (Data Encription Standard)**. Kode program digunakan untuk implementasi kunci sesi rahasia yang telah dibangkitkan dari algoritma pertukaran kunci Diffie-Hellman dan siap digunakan untuk melakukan komunikasi (encryption and decryption) perpesanan.
 
-Menggunakan library/package `crypto` dari `javaScript` yang merupakan standard kriptografi untuk `modules crypto javaScript`.
+Menggunakan library/package `crypto` dari `javaScript` `Node.js Crypto Module` yang merupakan standard kriptografi untuk modules crypto javaScript.
 
 ```
 
@@ -73,3 +90,40 @@ Menggunakan library/package `crypto` dari `javaScript` yang merupakan standard k
     exports.decryptDes = function(deData,KEY,IV){...}
 
 ```
+
+- `enData` merupakan parameter yang menerima masukan berupa **Plain Text**
+- `deData` merupakan parameter yang menerima masukan berupa **Chiper Text**
+- `KEY` dan `IV` penjelasan ada [disini](https://www.geeksforgeeks.org/node-js-crypto-createcipheriv-method/)
+
+```
+
+    // encryption
+    var cipher = crypto.createCipheriv('des', new Buffer(KEY), new Buffer(IV));
+    var buf1 = cipher.update(enData, 'utf8');    
+    var buf2 = cipher.final();
+
+    // decryption
+    var cipher = crypto.createDecipheriv('des', new Buffer(KEY), new Buffer(IV));
+    var buf1 = cipher.update(deData,'base64');
+    var buf2 = cipher.final();
+
+
+```
+
+- **Node.js crypto.createCipheriv() Method** [disini](https://www.geeksforgeeks.org/node-js-crypto-createcipheriv-method/)
+- **Node.js crypto.createDecipheriv() Method** [disini](https://www.geeksforgeeks.org/node-js-crypto-createdecipheriv-method/)
+- **Node.js cipher.update() Method** [disini](https://www.geeksforgeeks.org/node-js-cipher-update-method/) 
+- **Node.js cipher.final() Method** [disini](https://www.geeksforgeeks.org/node-js-cipher-final-method/)
+- **Node.js crypto.randomBytes() Method** [disini](https://www.geeksforgeeks.org/node-js-crypto-randombytes-method/)
+
+```
+
+    const result = new Buffer.alloc(buf1.length + buf2.length);
+    buf1.copy(result);
+    buf2.copy(result, buf1.length);
+
+```
+
+- **Node.js Buffer Module** [Node.JS Buffers](https://www.geeksforgeeks.org/node-js-buffers/)
+- **Node.js Buffer.alloc() Method** [disini](https://www.geeksforgeeks.org/node-js-buffer-alloc-method/)
+- **Node.js Buffer.copy() Method** [disini](https://www.geeksforgeeks.org/node-js-buffer-copy-method/)
