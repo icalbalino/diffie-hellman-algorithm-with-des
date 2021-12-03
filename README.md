@@ -71,6 +71,7 @@ Jika Alice dan Bob sudah mempunyai kunci sesi yang sama, yaitu `K = k`. Kunci in
 - Algoritma `dhaKedua` menggunakan library/package `crypto` dari `javaScript` `Node.js Crypto Module` untuk destructure `createDiffieHellman` method dan generate keys secara otomatis.
 - **Node.js crypto.createDiffieHellman(primeLength, generator) Method** [disini](https://www.geeksforgeeks.org/node-js-crypto-creatediffiehellmanprimelength-generator-method/)
 - **Node.js crypto.createDiffieHellman(prime, primeEncoding, generator, generatorEncoding) Method** [disini](https://www.geeksforgeeks.org/node-js-crypto-creatediffiehellmanprime-primeencoding-generator-generatorencoding-method/)
+- **Node.js diffieHellman.computeSecret() Method** [disini](https://www.geeksforgeeks.org/node-js-diffiehellman-computesecret-method/)
 
 
 ### 2. Main program
